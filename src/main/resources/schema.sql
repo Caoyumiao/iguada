@@ -112,13 +112,6 @@ alter table question add `disable` int(10) null default '0';
 
 drop table if exists collection;
 
-create table report
-(
-    id int auto_increment primary key not null,
-    user_id bigint not null ,
-    question_id bigint not null
-);
-
 create table collection
 (
     id int auto_increment primary key not null,
@@ -126,5 +119,9 @@ create table collection
     question_id bigint not null
 );
 
-alter table report add `deal` int(10) null default '0';
-
+create table report
+(
+    id int auto_increment primary key not null,
+    user_id bigint not null ,
+    question_id bigint not null
+);

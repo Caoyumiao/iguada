@@ -20,4 +20,5 @@ public class QuestionDTO {
     private Integer likeCount;
     private User user;
     private Integer sticky;
+    private Integer isDisabled;
 }

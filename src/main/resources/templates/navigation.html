@@ -56,7 +56,7 @@
                         </ul>
                     </li>
                     <li th:if="${session.user == null}">
-                        <!--                        <a th:href="@{https://github.com/login/oauth/authorize(client_id='7f316909bf70d1eaa2b2',redirect_uri=${#httpServletRequest.getServletContext().getAttribute('redirectUri')},scope='user',state=1)}">登录</a>-->
+                        <!--                        <a th:href="@{https://github.com/login/oauth/authorize(client_id='2a9ceeee31254d91b7e2',redirect_uri=${#httpServletRequest.getServletContext().getAttribute('redirectUri')},scope='user',state=1)}">登录</a>-->
                         <a href="#" data-toggle="modal" data-target="#myModal">登录</a>
                     </li>
 
@@ -74,10 +74,10 @@
                     <h4 class="modal-title" id="myModalLabel">登录注册</h4>
                 </div>
                 <div class="modal-body" style="text-align:center">
-                    <a th:href="@{https://gitee.com/oauth/authorize(client_id='e542c33bb680ea612ce21b8efb397274eae34833553bc80bc9ff881425d1b883',redirect_uri=${#httpServletRequest.getServletContext().getAttribute('giteeRedirectUri')},response_type=code)}">
+                    <a th:href="@{https://gitee.com/oauth/authorize(client_id='a190b1823f484526abfdd600ff0c7109d91dcc4f3eb16cfb48e869475924eefc',redirect_uri=${#httpServletRequest.getServletContext().getAttribute('giteeRedirectUri')},response_type=code)}">
                         <img src="/images/gitee.png">
                     </a>
-                    <a th:href="@{https://github.com/login/oauth/authorize(client_id='7f316909bf70d1eaa2b2',redirect_uri=${#httpServletRequest.getServletContext().getAttribute('githubRedirectUri')},scope='user',state=1)}">
+                    <a th:href="@{https://github.com/login/oauth/authorize(client_id='2a9ceeee31254d91b7e2',redirect_uri=${#httpServletRequest.getServletContext().getAttribute('githubRedirectUri')},scope='user',state=1)}">
                         <img src="/images/github.png">
                     </a>
                 </div>
