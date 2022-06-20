@@ -34,7 +34,7 @@ function comment2target(targetId, type, content) {
                     var isAccepted = confirm(response.message);
                     if (isAccepted) {
                         $('#myModal').modal({});
-                        // window.open("https://github.com/login/oauth/authorize?client_id=7f316909bf70d1eaa2b2&redirect_uri=" + document.location.origin + "/callback&scope=user&state=1");
+                        // window.open("https://github.com/login/oauth/authorize?client_id=2a9ceeee31254d91b7e2&redirect_uri=" + document.location.origin + "/callback&scope=user&state=1");
                         // window.localStorage.setItem("closable", true);
                     }
                 } else {

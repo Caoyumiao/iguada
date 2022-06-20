@@ -116,7 +116,7 @@ public class UFileService {
     }
 
     /**
-     * 通过文件名转换离职
+     * 通过文件名转换地址
      *
      * @param fileName 文件名称
      * @return

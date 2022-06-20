@@ -258,6 +258,7 @@ public class QuestionService {
             question.setLikeCount(0);
             question.setCommentCount(0);
             question.setSticky(0);
+            question.setDisable(0);
             return questionMapper.insert(question);
         } else {
             // 更新
@@ -276,6 +277,7 @@ public class QuestionService {
             updateQuestion.setTitle(question.getTitle());
             updateQuestion.setDescription(question.getDescription());
             updateQuestion.setTag(question.getTag());
+            updateQuestion.setDisable(question.getDisable());
             QuestionExample example = new QuestionExample();
             example.createCriteria()
                     .andIdEqualTo(question.getId());

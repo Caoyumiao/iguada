@@ -1,11 +1,15 @@
 package life.iGuaDa.community.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import life.iGuaDa.community.dto.AccessTokenDTO;
 import life.iGuaDa.community.model.User;
+import life.iGuaDa.community.model.UserExample;
 import life.iGuaDa.community.provider.GithubProvider;
 import life.iGuaDa.community.provider.UFileResult;
 import life.iGuaDa.community.provider.UFileService;
 import life.iGuaDa.community.provider.dto.GithubUser;
+import life.iGuaDa.community.mapper.UserMapper;
+import life.iGuaDa.community.service.RandomIdService;
 import life.iGuaDa.community.service.UserService;
 import life.iGuaDa.community.strategy.LoginUserInfo;
 import life.iGuaDa.community.strategy.UserStrategy;
@@ -21,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -38,6 +43,9 @@ public class AuthorizeController {
     @Autowired
     private GithubProvider githubProvider;
 
+    @Autowired
+    private RandomIdService randomIdService;
+
     @Value("${github.client.id}")
     private String clientId;
 
@@ -53,21 +61,35 @@ public class AuthorizeController {
     @Autowired
     private UFileService uFileService;
 
+    @Autowired UserMapper userMapper;
+
     @GetMapping("/callback/{type}")
     public String newCallback(@PathVariable(name = "type") String type,
                               @RequestParam(name = "code") String code,
                               @RequestParam(name = "state", required = false) String state,
-                              HttpServletRequest request,
                               HttpServletResponse response) {
         UserStrategy userStrategy = userStrategyFactory.getStrategy(type);
         LoginUserInfo loginUserInfo = userStrategy.getUser(code, state);
         if (loginUserInfo != null && loginUserInfo.getId() != null) {
             User user = new User();
+            String accountId = randomIdService.createRandomId();
+            Boolean isOccupied = true;
+            while(isOccupied){
+                UserExample userExample = new UserExample();
+                userExample.createCriteria().andAccountIdEqualTo(accountId);
+                List<User> users = userMapper.selectByExample(userExample);
+                if(users != null && users.size() != 0){
+                    isOccupied = true;
+                }
+                else isOccupied = false;
+            }
             String token = UUID.randomUUID().toString();
             user.setToken(token);
             user.setName(loginUserInfo.getName());
-            user.setAccountId(String.valueOf(loginUserInfo.getId()));
+            user.setAccountId(accountId);
             user.setType(type);
+            user.setIdentity(0);
+            user.setDisable(0);
             UFileResult fileResult = null;
             try {
                 fileResult = uFileService.upload(loginUserInfo.getAvatarUrl());
@@ -87,7 +109,7 @@ public class AuthorizeController {
             return REDIRECT;
         }
     }
-
+/*
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code,
                            @RequestParam(name = "state") String state,
@@ -125,7 +147,7 @@ public class AuthorizeController {
             return REDIRECT;
         }
     }
-
+*/
     /**
      * 实现登出功能
      * @param request
