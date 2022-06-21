@@ -1,6 +1,8 @@
 package life.iGuaDa.community.controller;
 
 import life.iGuaDa.community.dto.FileDTO;
+import life.iGuaDa.community.dto.ImageDataDTO;
+import life.iGuaDa.community.provider.FileService;
 import life.iGuaDa.community.provider.UFileResult;
 import life.iGuaDa.community.provider.UFileService;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class FileController {
     @Autowired
-    private UFileService uFileService;
+    private FileService fileService;
 
     @RequestMapping("/file/upload")
     @ResponseBody
@@ -28,10 +30,10 @@ public class FileController {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         MultipartFile file = multipartRequest.getFile("editormd-image-file");
         try {
-            UFileResult uFileResult = uFileService.upload(file.getInputStream(), file.getContentType(), file.getOriginalFilename());
+            String fileUrl= fileService.upload(file);
             FileDTO fileDTO = new FileDTO();
             fileDTO.setSuccess(1);
-            fileDTO.setUrl(uFileResult.getFileUrl());
+            fileDTO.setUrl(fileUrl);
             return fileDTO;
         } catch (Exception e) {
             log.error("upload error", e);
