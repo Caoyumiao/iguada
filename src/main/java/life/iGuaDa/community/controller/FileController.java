@@ -1,10 +1,7 @@
 package life.iGuaDa.community.controller;
 
 import life.iGuaDa.community.dto.FileDTO;
-import life.iGuaDa.community.dto.ImageDataDTO;
-import life.iGuaDa.community.provider.FileService;
-import life.iGuaDa.community.provider.UFileResult;
-import life.iGuaDa.community.provider.UFileService;
+import life.iGuaDa.community.service.FileService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
