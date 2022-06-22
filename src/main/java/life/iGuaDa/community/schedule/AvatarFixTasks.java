@@ -3,8 +3,7 @@ package life.iGuaDa.community.schedule;
 import life.iGuaDa.community.mapper.UserMapper;
 import life.iGuaDa.community.model.User;
 import life.iGuaDa.community.model.UserExample;
-import life.iGuaDa.community.provider.UFileResult;
-import life.iGuaDa.community.provider.UFileService;
+import life.iGuaDa.community.service.FileService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.RowBounds;
@@ -27,7 +26,7 @@ public class AvatarFixTasks {
     private UserMapper userMapper;
 
     @Autowired
-    private UFileService uFileService;
+    private FileService fileService;
 
     @Scheduled(fixedRate = 1000 * 60 * 10)
     public void fixUserAvatar() {
@@ -42,14 +41,12 @@ public class AvatarFixTasks {
             for (User user : list) {
                 try {
                     if (StringUtils.contains(user.getAvatarUrl(), "githubusercontent")) {
-                        UFileResult fileResult = uFileService.upload(user.getAvatarUrl());
-                        if (fileResult != null && fileResult.getFileUrl() != null) {
-                            user.setAvatarUrl(fileResult.getFileUrl());
+                            String fileUrl = fileService.upload(user.getAvatarUrl());
+                            user.setAvatarUrl(fileUrl);
                             log.error("fixUserAvatar user : {}", user.getId());
                             userMapper.updateByPrimaryKey(user);
                         }
-                    }
-                } catch (Exception e) {
+                    } catch (Exception e) {
                     log.error("fixUserAvatar error", e);
                 }
             }
