@@ -7,35 +7,6 @@
 </head>
 <body>
 
-<!--<script>-->
-<!--    function login(){-->
-<!--        var accountId = $("#UserID").val();-->
-<!--        var password = $("#upassword").val();-->
-<!--        $.ajax({-->
-<!--            type: "POST",-->
-<!--            url: "/login",-->
-<!--            contentType: 'application/json',-->
-<!--            data: JSON.stringify({-->
-<!--                "accountId": accountId,-->
-<!--                "password": password,-->
-<!--            }),-->
-<!--            success: function (response) {-->
-<!--                if (response.code == 200) {-->
-<!--                    alert("登录成功");-->
-<!--                    window.location.href="/";-->
-<!--                } else {-->
-<!--                    if (response.code == 2018) {-->
-<!--                        alert("用户名或密码错误，请重试");-->
-<!--                    }-->
-<!--                    else {-->
-<!--                        alert(response.message);-->
-<!--                    } }-->
-<!--            }-->
-<!--        })-->
-
-<!--    }-->
-<!--</script>-->
-
 <div class="container">
     <div class="form row">
         <form class="form-horizontal col-sm-offset-3 col-md-offset-3"action="/login" method="post">
@@ -43,7 +14,7 @@
             <div class="col-sm-9 col-md-9">
                 <div class="form-group">
                     <!--        用户名图标和用户名输入框            -->
-                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <i class="fa fa-info" aria-hidden="true"></i>
                     <input class="form-control" type="text" name="accountId" id="accountId" placeholder="请输入ID" required autofocus>
                 </div>
                 <!--        密码图标和密码输入框                -->
