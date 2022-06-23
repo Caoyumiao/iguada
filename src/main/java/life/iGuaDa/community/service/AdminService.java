@@ -17,6 +17,8 @@ import java.util.List;
 public class AdminService {
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
     private QuestionMapper questionMapper;
 
     public void blockUser(String accountId){
@@ -54,35 +56,35 @@ public class AdminService {
     }
 
     public void blockQuestion(Long questionId) {
-        Question dbQuestion = questionMapper.selectByPrimaryKey(questionId);
-        if (dbQuestion == null) {
-            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
-        }
-
-        Question updateQuestion = new Question();
-        updateQuestion.setDisable(1);
-        QuestionExample example = new QuestionExample();
-        example.createCriteria()
+        QuestionExample questionExample = new QuestionExample();
+        questionExample.createCriteria()
                 .andIdEqualTo(questionId);
-        int updated = questionMapper.updateByExampleSelective(updateQuestion, example);
-        if (updated != 1) {
+        List<Question> questions = questionMapper.selectByExample(questionExample);
+        if(!questions.isEmpty()) {
+            Question updateQuestion = questions.get(0);
+            updateQuestion.setDisable(1);
+            QuestionExample example = new QuestionExample();
+            example.createCriteria()
+                    .andIdEqualTo(updateQuestion.getId());
+            questionMapper.updateByExampleSelective(updateQuestion, example);
+        } else {
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         }
     }
 
     public void unblockQuestion(Long questionId) {
-        Question dbQuestion = questionMapper.selectByPrimaryKey(questionId);
-        if (dbQuestion == null) {
-            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
-        }
-
-        Question updateQuestion = new Question();
-        updateQuestion.setDisable(0);
-        QuestionExample example = new QuestionExample();
-        example.createCriteria()
+        QuestionExample questionExample = new QuestionExample();
+        questionExample.createCriteria()
                 .andIdEqualTo(questionId);
-        int updated = questionMapper.updateByExampleSelective(updateQuestion, example);
-        if (updated != 1) {
+        List<Question> questions = questionMapper.selectByExample(questionExample);
+        if(!questions.isEmpty()) {
+            Question updateQuestion = questions.get(0);
+            updateQuestion.setDisable(0);
+            QuestionExample example = new QuestionExample();
+            example.createCriteria()
+                    .andIdEqualTo(updateQuestion.getId());
+            questionMapper.updateByExampleSelective(updateQuestion, example);
+        } else {
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         }
     }
