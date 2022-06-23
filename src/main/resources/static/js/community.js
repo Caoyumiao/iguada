@@ -1,6 +1,42 @@
-/**
- * Created by codedrinker on 2019/6/1.
- */
+
+
+
+function regist(){
+    var accountId = $("#userid").val();
+    var password = $("#password").val();
+    var resetpw = $("#resetpw").val();
+    var username = $("#username").val();
+    if(parseInt(password) != parseInt(resetpw )){
+        alert("两次输入密码不同，请重新输入");
+        return;
+    }
+    $.ajax({
+        type: "POST",
+        url: "/register",
+        contentType: 'application/json',
+        data: JSON.stringify({
+            "accountId": accountId,
+            "name": username,
+            "password": password,
+            "confirmPassword": resetpw
+        }),
+        success: function (response) {
+            if (response.code == 200) {
+                alert("注册成功");
+                window.location.href="/login";
+            } else {
+                if (response.code == 2015) {
+                    alert(response.message);
+                }
+             else {
+                alert(response.message);
+            } }
+        }
+    })
+
+}
+
+
 
 /**
  * 提交回复
@@ -161,7 +197,7 @@ function selectTag(e) {
             //即value的前一个和后一个字符都是逗号","或者没有字符时，才说明value是一个独立的标签
             if ((index == 0 || previous.charAt(index - 1) == ",")
                 && (index + value.length == previous.length || previous.charAt(index + value.length) == ",")
-               ) {
+            ) {
                 appear = true;
                 break;
             }

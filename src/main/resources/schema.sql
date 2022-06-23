@@ -125,3 +125,5 @@ create table report
     user_id bigint not null ,
     question_id bigint not null
 );
+
+alter table report add `deal` int(10) null default '0';
