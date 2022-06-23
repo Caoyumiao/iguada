@@ -1,7 +1,6 @@
 package life.iGuaDa.community.enums;
 
 /**
- * Created by codedrinker on 2019/8/18.
  * 消息类型枚举
  *      HOT, 最热
  *     HOT30, 30天最热

@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-/**
- * Created by codedrinker on 2019/5/21.
- */
 @Controller
 public class QuestionController {
 

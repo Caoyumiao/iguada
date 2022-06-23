@@ -20,9 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * Created by codedrinker on 2019/5/2.
- */
 @Controller
 @Slf4j
 public class PublishController {

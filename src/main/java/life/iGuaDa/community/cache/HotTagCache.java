@@ -11,7 +11,6 @@ import java.util.PriorityQueue;
 
 /**
  * 缓存类，用于记录热门标签
- * Created by codedrinker on 2019/8/2.
  */
 
 @Component

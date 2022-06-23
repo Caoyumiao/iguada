@@ -1,7 +1,6 @@
 package life.iGuaDa.community.exception;
 
 /**
- * Created by codedrinker on 2019/5/28.
  * 自定义的错误码
  */
 public enum CustomizeErrorCode implements ICustomizeErrorCode {

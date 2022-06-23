@@ -1,7 +1,6 @@
 package life.iGuaDa.community.enums;
 
 /**
- * Created by codedrinker on 2019/5/31.
  * 评论类型枚举
  * 分为QUESTION，与COMMENT类型
  */

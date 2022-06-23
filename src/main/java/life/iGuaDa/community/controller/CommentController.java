@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-/**
- * Created by codedrinker on 2019/5/30.
- */
 @Controller
 public class CommentController {
 

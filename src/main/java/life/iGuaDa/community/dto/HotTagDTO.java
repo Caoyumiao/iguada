@@ -2,11 +2,6 @@ package life.iGuaDa.community.dto;
 
 import lombok.Data;
 
-/**
- * 热门标签所用传参，覆写了compareTo
- * 方法，帮助实现热门标签排序
- * Created by codedrinker on 2019/8/2.
- */
 @Data
 public class HotTagDTO implements Comparable {
     private String name;

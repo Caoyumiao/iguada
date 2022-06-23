@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * 专注于处理图片的工具
+ * 处理图片的工具
  */
 @Slf4j
 public class FileUtils {
@@ -90,7 +90,7 @@ public class FileUtils {
     }
 
     public static void main(String[] args) {
-        String x = FileUtils.newLocalFileName("http://luckydraw.cn-bj.ufileos.com/ffb5134b-8070-4d65-be0f-c3b1a0050dbc.jpg");
+        String x = FileUtils.newLocalFileName("https://s2.loli.net/2022/06/19/eSOv5Qafron3Pd7.png");
         logger.info(x);
     }
 }

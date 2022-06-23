@@ -2,10 +2,6 @@ package life.iGuaDa.community.dto;
 
 import lombok.Data;
 
-/**
- * 登录所用传参
- * Created by codedrinker on 2019/4/24.
- */
 @Data
 public class AccessTokenDTO {
     private String client_id;
