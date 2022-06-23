@@ -5,7 +5,6 @@ import life.iGuaDa.community.exception.CustomizeErrorCode;
 import life.iGuaDa.community.service.AdminService;
 import life.iGuaDa.community.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,76 +16,72 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @GetMapping("/blockQuestion/{id}")
-    public ResultDTO doBlockQuestion(@PathVariable(name = "id")Long id, HttpServletRequest request, Model model){
+    @ResponseBody
+    @RequestMapping(value = "/blockQuestion", method = RequestMethod.POST)
+    public Object blockQuestion(@RequestBody Long id, HttpServletRequest request) {
 
         User user = (User) request.getSession().getAttribute("user");
 
         if (user == null) {
-            model.addAttribute(ERROR, "管理员未登录");
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
         }
 
         if (user.getIdentity() != 1) {
-            model.addAttribute(ERROR, "权限不足");
             return ResultDTO.errorOf(CustomizeErrorCode.PERMISSION_DENIED);
         }
 
         adminService.blockQuestion(id);
-        model.addAttribute("BlockSuccess", "success");
         return ResultDTO.okOf();
     }
 
-    public ResultDTO doUnblockQuestion(@PathVariable(name = "id")Long id, HttpServletRequest request, Model model){
+    @ResponseBody
+    @RequestMapping(value = "/unblockQuestion", method = RequestMethod.POST)
+    public Object unblockQuestion(@RequestBody Long id, HttpServletRequest request){
 
         User user = (User) request.getSession().getAttribute("user");
 
         if (user == null) {
-            model.addAttribute(ERROR, "管理员未登录");
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
         }
 
         if (user.getIdentity() != 1) {
-            model.addAttribute(ERROR, "权限不足");
             return ResultDTO.errorOf(CustomizeErrorCode.PERMISSION_DENIED);
         }
 
         adminService.unblockQuestion(id);
-        model.addAttribute("UnblockSuccess", "success");
         return ResultDTO.okOf();
     }
 
-    public ResultDTO doBlockUser(@PathVariable(name = "accountId")String accountId, HttpServletRequest request, Model model){
+
+    @ResponseBody
+    @RequestMapping(value = "/blockUser", method = RequestMethod.POST)
+    public Object blockUser(@RequestBody String accountId, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
 
         if (user == null) {
-            model.addAttribute(ERROR, "管理员未登录");
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
         }
 
         if (user.getIdentity() != 1) {
-            model.addAttribute(ERROR, "权限不足");
             return ResultDTO.errorOf(CustomizeErrorCode.PERMISSION_DENIED);
         }
         adminService.blockUser(accountId);
-        model.addAttribute("BlockSuccess", "success");
         return ResultDTO.okOf();
     }
 
-    public ResultDTO doUnblockUser(@PathVariable(name = "accountId")String accountId, HttpServletRequest request, Model model){
+    @ResponseBody
+    @RequestMapping(value = "/unblockUser", method = RequestMethod.POST)
+    public Object unblockUser(@RequestBody String accountId, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
 
         if (user == null) {
-            model.addAttribute(ERROR, "管理员未登录");
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
         }
 
         if (user.getIdentity() != 1) {
-            model.addAttribute(ERROR, "权限不足");
             return ResultDTO.errorOf(CustomizeErrorCode.PERMISSION_DENIED);
         }
-        adminService.blockUser(accountId);
-        model.addAttribute("UnblockSuccess", "success");
+        adminService.unblockUser(accountId);
         return ResultDTO.okOf();
     }
 }

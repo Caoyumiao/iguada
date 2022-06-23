@@ -7,14 +7,17 @@
 <body>
 <div th:insert="~{navigation :: nav}"></div>
 <div class="container-fluid main profile">
-<div class="row">
-    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-        <div class="media" th:each="collection : ${pagination.data}">
-
-            <div class="media-body">
-                <h5 class="media-heading">
-                    <a th:href="@{'/question/'+ ${collection.id}}" th:text="${collection.title}"></a>
-                    <a th:href="@{'/collectdelete/'+${collection.id}+'/' + ${session.user.id}}" class="community-menu">
+	<div class="row">
+		<div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+			<h2><span th:text="${sectionName}"></span></h2>
+			<hr>
+			
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="media" th:each="collection : ${pagination.data}">
+					<div class="media-body">
+					<h5 class="media-heading">
+						<a th:href="@{'/question/'+ ${collection.id}}" th:text="${collection.title}"></a>
+						<a th:href="@{'/collectdelete/'+${collection.id}+'/' + ${session.user.id}}" class="community-menu">
                         <span>删除</span>
                     </a>
                 </h5>
@@ -61,6 +64,7 @@
             </ul>
         </nav>
     </div>
+	</div>
     <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
         <div class="list-group section">
             <a href="/profile/questions"
@@ -71,11 +75,12 @@
                 <span class="badge" th:text="${session.unreadCount}"></span>
             </a>
             <a href="/profile/collect"
-               th:class="${section == 'collect'}? 'active list-group-item' : 'list-group-item'">我的收藏</a>
+               th:class="${section == 'collect'}? 'active list-group-item' : 'list-group-item'">我的收藏
+			</a>
         </div>
     </div>
 </div>
-</div>
+
 <div th:insert="~{footer :: foot}"></div>
 </body>
 </html>
