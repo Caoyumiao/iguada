@@ -18,5 +18,11 @@ img.location=[填写本地路径]
 localhost:8887
 ```
 
+#### 管理员登录
+
+```xml
+localhost:8887/adminlogin
+```
+
 
 
