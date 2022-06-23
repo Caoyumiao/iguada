@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>登录</title>
+    <head th:insert="~{import :: head}"></head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!--<script>-->
+<!--    function login(){-->
+<!--        var accountId = $("#UserID").val();-->
+<!--        var password = $("#upassword").val();-->
+<!--        $.ajax({-->
+<!--            type: "POST",-->
+<!--            url: "/login",-->
+<!--            contentType: 'application/json',-->
+<!--            data: JSON.stringify({-->
+<!--                "accountId": accountId,-->
+<!--                "password": password,-->
+<!--            }),-->
+<!--            success: function (response) {-->
+<!--                if (response.code == 200) {-->
+<!--                    alert("登录成功");-->
+<!--                    window.location.href="/";-->
+<!--                } else {-->
+<!--                    if (response.code == 2018) {-->
+<!--                        alert("用户名或密码错误，请重试");-->
+<!--                    }-->
+<!--                    else {-->
+<!--                        alert(response.message);-->
+<!--                    } }-->
+<!--            }-->
+<!--        })-->
+
+<!--    }-->
+<!--</script>-->
+
+<div class="container">
+    <div class="form row">
+        <form class="form-horizontal col-sm-offset-3 col-md-offset-3"action="/login" method="post">
+            <h3 class="form-title">登录</h3>
+            <div class="col-sm-9 col-md-9">
+                <div class="form-group">
+                    <!--        用户名图标和用户名输入框            -->
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <input class="form-control" type="text" name="accountId" id="accountId" placeholder="请输入ID" required autofocus>
+                </div>
+                <!--        密码图标和密码输入框                -->
+                <div class="form-group">
+                    <i class="fa fa-key" aria-hidden="true"></i>
+                    <input class="form-control " type="password" name="password" id="password" placeholder="请输入密码" required>
+                </div>
+                <!--        用超链接跳转到注册页面               -->
+                <div class="form-group">
+                    <br>
+                    <a href="/register">没有账号？立即注册</a>
+                </div>
+                <!--         登录按钮           -->
+                <div class="form-group">
+                    <input type="submit"  value="登录" class="btn btn-success pull-right">
+                </div>
+            </div>
+        </form>
+        <div class="alert alert-danger alert-dismissible" role="alert" th:if="${loginFail}">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>用户名或密码错误，请重试</strong>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

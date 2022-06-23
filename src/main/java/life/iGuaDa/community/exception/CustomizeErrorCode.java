@@ -22,7 +22,11 @@ public enum CustomizeErrorCode implements ICustomizeErrorCode {
     RATE_LIMIT(2014, "操作太快了，请稍后重试"),
     ID_OCCUPIED(2015, "ID已被占用，请更换ID注册"),
     USER_NOT_FOUND(2016,"用户不存在"),
-    PERMISSION_DENIED(2017,"权限不足")
+    PERMISSION_DENIED(2017,"权限不足"),
+    LOGIN_FAIL(2018, "用户名或密码错误，请重试"),
+
+    REPORT_QUESTION_NOT_FOUND(2019,"举报的问题不存在"),
+    REASON_IS_EMPTY(2020,"举报原因不能为空")
     ;
 
     @Override

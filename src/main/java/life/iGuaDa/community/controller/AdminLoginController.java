@@ -1,12 +1,14 @@
 package life.iGuaDa.community.controller;
 
+import life.iGuaDa.community.dto.ResultDTO;
+import life.iGuaDa.community.dto.UserDTO;
+import life.iGuaDa.community.exception.CustomizeErrorCode;
 import life.iGuaDa.community.mapper.UserMapper;
 import life.iGuaDa.community.model.User;
 import life.iGuaDa.community.model.UserExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -25,11 +27,11 @@ public class AdminLoginController {
         return "adminLogin";
     }
 
-    @PostMapping("/adminLogin")
-    public String adminLogin(HttpServletRequest request, HttpServletResponse response, Model model) {
-        String accountId = request.getParameter("accountId");
-        String password = request.getParameter("password");
-        String rememberFlag = request.getParameter("rememberFlag");
+    @ResponseBody
+    @RequestMapping(value = "/adminlogin", method = RequestMethod.POST)
+    public Object post(@RequestBody UserDTO userDTO, String rememberFlag) {
+        String accountId = userDTO.getAccountId();
+        String password = userDTO.getPassword();
         UserExample userExample = new UserExample();
         userExample.createCriteria()
                 .andAccountIdEqualTo(accountId)
@@ -39,8 +41,7 @@ public class AdminLoginController {
         if (users != null && users.size() != 0) {
             User user = users.get(0);
             if(user.getIdentity() != 1){
-                model.addAttribute(ERROR, "权限不足");
-                return "adminLogin";
+                return ResultDTO.errorOf(CustomizeErrorCode.PERMISSION_DENIED);
             } else {
                 String token = UUID.randomUUID().toString();
                 user.setToken(token);
@@ -50,12 +51,10 @@ public class AdminLoginController {
                 if (rememberFlag != null) {
                     cookie.setMaxAge(60 * 60 * 24);
                 }
-                response.addCookie(cookie);
-                return "redirect:/";
+                return ResultDTO.okOf();
             }
         } else {
-            model.addAttribute("adminLoginFail", "fail");
-            return "adminLogin";
+            return ResultDTO.errorOf(CustomizeErrorCode.LOGIN_FAIL);
         }
 
     }

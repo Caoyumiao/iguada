@@ -27,7 +27,7 @@ public class AdminController {
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
         }
 
-        if (user.getIdentity() == 0) {
+        if (user.getIdentity() != 1) {
             model.addAttribute(ERROR, "权限不足");
             return ResultDTO.errorOf(CustomizeErrorCode.PERMISSION_DENIED);
         }
@@ -46,7 +46,7 @@ public class AdminController {
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
         }
 
-        if (user.getIdentity() == 0) {
+        if (user.getIdentity() != 1) {
             model.addAttribute(ERROR, "权限不足");
             return ResultDTO.errorOf(CustomizeErrorCode.PERMISSION_DENIED);
         }
@@ -64,7 +64,7 @@ public class AdminController {
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
         }
 
-        if (user.getIdentity() == 0) {
+        if (user.getIdentity() != 1) {
             model.addAttribute(ERROR, "权限不足");
             return ResultDTO.errorOf(CustomizeErrorCode.PERMISSION_DENIED);
         }
@@ -81,7 +81,7 @@ public class AdminController {
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
         }
 
-        if (user.getIdentity() == 0) {
+        if (user.getIdentity() != 1) {
             model.addAttribute(ERROR, "权限不足");
             return ResultDTO.errorOf(CustomizeErrorCode.PERMISSION_DENIED);
         }
