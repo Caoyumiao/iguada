@@ -1,6 +1,84 @@
 
+/**
+ * 封人
+ */
+function doBlockUser(query){
+    var accountId = query.getAttribute("data-buid");
+    $.ajax({
+        type: "POST",
+        url: "/blockUser",
+        contentType: 'application/json',
+        data: JSON.stringify({
+            "accountId": accountId,
+        }),
+        success: function (response) {
+            if (response.code == 200) {
+                alert("封禁成功");
+            } else {
+                alert(response.message);
+            }
+        }
+    })
+
+}
+
+/**
+ * 封贴
+ */
+function doBlockQuestion(query){
+    var questionId = query.getAttribute("data-bqid")
+    if(confirm("确定要删除该问题吗？")){
+        $.ajax({
+            type: "POST",
+            url: "/blockQuestion",
+            contentType: 'application/json',
+            data: JSON.stringify({
+                "id": questionId,
+            }),
+            success: function (response) {
+                if (response.code == 200) {
+                    alert("删除成功");
+                    window.location.reload();
+                } else {
+                    alert(response.message);
+                }
+            }
+        })
+
+    }else return;
+}
+
+/**
+ * 解封人
+ */
+function doUnblockUser(query){
+    var accountId = query.getAttribute("data-ubuid")
+    if(confirm("确定要解封该用户吗？")){
+        $.ajax({
+            type: "POST",
+            url: "/unblockUser",
+            contentType: 'application/json',
+            data: JSON.stringify({
+                "accountId": accountId,
+            }),
+            success: function (response) {
+                if (response.code == 200) {
+                    alert("解封成功");
+                } else {
+                    alert(response.message);
+                }
+            }
+        })
+
+    }else return;
+}
 
 
+
+
+/**
+ * 注册
+ */
 function regist(){
     var accountId = $("#userid").val();
     var password = $("#password").val();
@@ -28,9 +106,9 @@ function regist(){
                 if (response.code == 2015) {
                     alert(response.message);
                 }
-             else {
-                alert(response.message);
-            } }
+                else {
+                    alert(response.message);
+                } }
         }
     })
 

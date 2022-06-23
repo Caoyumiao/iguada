@@ -21,8 +21,5 @@ localhost:8887
 #### 管理员登录
 
 ```xml
-localhost:8887/adminlogin
+localhost:8887/adminLogin
 ```
-
-
-
