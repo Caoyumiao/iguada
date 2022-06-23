@@ -67,25 +67,10 @@ public class AdminService {
             example.createCriteria()
                     .andIdEqualTo(updateQuestion.getId());
             questionMapper.updateByExampleSelective(updateQuestion, example);
+            questionMapper.deleteByExample(example);
         } else {
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         }
     }
 
-    public void unblockQuestion(Long questionId) {
-        QuestionExample questionExample = new QuestionExample();
-        questionExample.createCriteria()
-                .andIdEqualTo(questionId);
-        List<Question> questions = questionMapper.selectByExample(questionExample);
-        if(!questions.isEmpty()) {
-            Question updateQuestion = questions.get(0);
-            updateQuestion.setDisable(0);
-            QuestionExample example = new QuestionExample();
-            example.createCriteria()
-                    .andIdEqualTo(updateQuestion.getId());
-            questionMapper.updateByExampleSelective(updateQuestion, example);
-        } else {
-            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
-        }
-    }
 }

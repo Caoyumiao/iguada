@@ -113,3 +113,6 @@ create table report
 );
 
 alter table report add `deal` int(10) null default '0';
+
+INSERT INTO user (id, account_id, name, token, gmt_create, gmt_modified, avatar_url, type, disable, identity, password)
+VALUES('99999', 'admin', 'admin', null, 0, 0,'https://s2.loli.net/2022/06/22/pvwu5yOczfUDQgY.png', 'admin', 0, 1, 'admin');
