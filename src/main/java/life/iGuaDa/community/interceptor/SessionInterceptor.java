@@ -1,10 +1,8 @@
 package life.iGuaDa.community.interceptor;
 
-import life.iGuaDa.community.enums.AdPosEnum;
 import life.iGuaDa.community.mapper.UserMapper;
 import life.iGuaDa.community.model.User;
 import life.iGuaDa.community.model.UserExample;
-import life.iGuaDa.community.service.AdService;
 import life.iGuaDa.community.service.NotificationService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-/**
- * Created by codedrinker on 2019/5/16.
- */
 @Service
 public class SessionInterceptor implements HandlerInterceptor {
 
@@ -30,9 +25,6 @@ public class SessionInterceptor implements HandlerInterceptor {
     private UserMapper userMapper;
     @Autowired
     private NotificationService notificationService;
-    @Autowired
-    private AdService adService;
-
     @Value("${github.redirect.uri}")
     private String githubRedirectUri;
 
@@ -56,9 +48,6 @@ public class SessionInterceptor implements HandlerInterceptor {
         request.getServletContext().setAttribute("giteeRedirectUri", giteeRedirectUri);
         request.getServletContext().setAttribute("githubRedirectUri", githubRedirectUri);
         // 没有登录的时候也可以查看导航
-        for (AdPosEnum adPos : AdPosEnum.values()) {
-            request.getServletContext().setAttribute(adPos.name(), adService.list(adPos.name()));
-        }
         Cookie[] cookies = request.getCookies();
         if (cookies != null && cookies.length != 0)
             for (Cookie cookie : cookies) {

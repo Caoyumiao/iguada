@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 /**
  * 定义了各类发布问题时所用标签
- * Created by codedrinker on 2019/6/5.
  */
 public class TagCache {
     public static List<TagDTO> get() {

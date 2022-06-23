@@ -13,10 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * 用于实现个人主页
- * Created by codedrinker on 2019/5/15.
- */
 @Controller
 public class ProfileController {
     @Autowired

@@ -95,7 +95,6 @@
                 <a th:each="tag : ${tags}" th:href="@{/(page=1,search=${search},tag=${tag},sort=${sort})}"
                    th:text="${tag}" class="community-tag"></a>
             </div>
-            <div th:insert="~{side :: side}"></div>
         </div>
     </div>
 </div>

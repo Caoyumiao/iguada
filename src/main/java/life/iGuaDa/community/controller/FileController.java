@@ -12,9 +12,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * Created by codedrinker on 2019/6/26.
- */
 @Controller
 @Slf4j
 public class FileController {

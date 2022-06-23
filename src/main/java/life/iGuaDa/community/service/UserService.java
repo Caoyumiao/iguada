@@ -8,9 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by codedrinker on 2019/5/23.
- */
 @Service
 public class UserService {
     @Autowired

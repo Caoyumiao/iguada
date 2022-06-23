@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-/**
- * Created by codedrinker on 2019/4/24.
- */
 @Controller
 public class IndexController {
 

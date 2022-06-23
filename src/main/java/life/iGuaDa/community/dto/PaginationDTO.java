@@ -5,10 +5,6 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 实现分页所用传参
- * Created by codedrinker on 2019/5/14.
- */
 @Data
 public class PaginationDTO<T> {
     private List<T> data;

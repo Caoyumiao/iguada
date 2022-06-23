@@ -1,7 +1,6 @@
 package life.iGuaDa.community.enums;
 
 /**
- * Created by codedrinker on 2019/6/14.
  * 消息状态枚举
  * 分为已读或未读
  */

@@ -18,10 +18,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-/**
- * Created by codedrinker on 2019/5/31.
- */
 @Service
 public class CommentService {
 

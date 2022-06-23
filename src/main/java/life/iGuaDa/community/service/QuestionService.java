@@ -23,9 +23,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by codedrinker on 2019/5/7.
- */
 @Service
 public class QuestionService {
 

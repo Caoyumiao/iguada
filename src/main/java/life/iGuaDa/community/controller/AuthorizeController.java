@@ -22,10 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * 实现登录功能,callback已废弃，newcallback多出type传参用于不同平台登录
- * Created by codedrinker on 2019/4/24.
- */
 @Controller
 @Slf4j
 public class AuthorizeController {

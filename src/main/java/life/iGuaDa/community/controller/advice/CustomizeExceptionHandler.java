@@ -17,10 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/**
- * 异常处理类，对接收信息进行处理决定是否跳转至错误页面
- * Created by codedrinker on 2019/5/28.
- */
 @ControllerAdvice
 @Slf4j
 public class CustomizeExceptionHandler {

@@ -2,9 +2,6 @@ package life.iGuaDa.community.dto;
 
 import lombok.Data;
 
-/**
- * Created by codedrinker on 2019/6/14.
- */
 @Data
 public class NotificationDTO {
     private Long id;
